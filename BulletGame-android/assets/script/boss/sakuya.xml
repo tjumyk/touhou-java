@@ -1,0 +1,24 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+            var cardList = new('java.util.ArrayList');
+            var cardScriptList = [
+            	'card5.xml',
+            	'card6.xml'
+           	];
+            
+            for(script : cardScriptList){
+	            var card = new('org.tjuscs.bulletgame.model.Bosscard');
+	            var tasklist = TaskList:readScript('script/boss/card/'+script);
+	            tasklist.setBinding('boss',target);
+	            tasklist.setBinding('card',card); 
+	            tasklist.get('create').act();        
+	            cardList.add(card);
+            }
+            
+	        target.init(480,800,'Sakuya Izayoi',cardList);
+	        target.setImg('sakuya');
+	    </cmd>
+	</task>
+</tasklist>
+    

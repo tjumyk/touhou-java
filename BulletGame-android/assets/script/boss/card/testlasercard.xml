@@ -1,0 +1,45 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+	        card.init(
+	       		'滅罪「正直者の死」',
+	           	2*60,30*60,60*60,
+	           	600,
+	           	10,10,10);
+	        card.setTask(tasklist.get('task'));
+        </cmd>
+    </task>
+    <task name="task">
+        <para>
+	        <seq>
+	            <move x="240" y="700" frames="180" mode="normal" target="boss"/>
+	            <wait count="120"/>
+		        <loop count="-1">
+				    <seq>
+				        <cmd>
+			                var laser = new('org.tjuscs.bulletgame.model.Laser');
+					        var tasklist = TaskList:readScript("script/boss/card/mokou_laser.xml");
+					        tasklist.setBinding('target',laser);
+					        tasklist.setBinding('master',boss);
+					        tasklist.setBinding('dir',1);
+			       			tasklist.get('create').act();
+							game.getObjList().add(laser);
+			            </cmd>
+			            <wait count="240"/>
+			            <cmd>
+			                var laser = new('org.tjuscs.bulletgame.model.Laser');
+					        var tasklist = TaskList:readScript("script/boss/card/mokou_laser.xml");
+					        tasklist.setBinding('target',laser);
+					        tasklist.setBinding('dir',1);
+					        tasklist.setBinding('master',boss);
+			       			tasklist.get('create').act();
+							game.getObjList().add(laser);
+			            </cmd>
+				        <wait count="240"/>
+				    </seq>
+				</loop>
+			</seq>
+			
+		</para>		        
+    </task>
+</tasklist>

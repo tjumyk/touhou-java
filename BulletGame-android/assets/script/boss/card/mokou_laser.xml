@@ -1,0 +1,24 @@
+<tasklist>
+	<task name="create">
+   	    <cmd>
+            target.init(
+	        	gameUtil.COLOR_RED,
+	        	master.getX(),master.getY(),
+	        	0,0,512,0,4,0);
+	       	target.turnOn(6,false);
+	       	target.setRot(gameUtil.Angle(target,game.getPlayer())-dir*16);
+	       	target.setColli(false);
+	       	target.setOmiga(dir*0.4);
+	       	target.setTask(tasklist.get("task"));
+        </cmd>
+    </task>
+    
+    <task name="task">
+        <seq>
+	        <wait count="40"/>
+	        <cmd>target.setColli(true);</cmd>
+	        <wait count="80"/>
+	        <cmd>gameUtil.Del(target);</cmd>
+        </seq>
+    </task>
+</tasklist>

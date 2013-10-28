@@ -1,0 +1,85 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+	        card.init(
+	       		'土著神「ケロちゃん风雨に负けず」',
+	           	2*60,30*60,60*60,
+	           	600,
+	           	10,10,10);
+	        card.setTask(tasklist.get('task'));
+        </cmd>
+    </task>
+    <task name="task">
+        <para>
+	        <seq>
+	            <move x="240" y="600" frames="180" mode="normal" target="boss"/>
+		        <wait count="180"/>
+		        <loop count="-1">
+		            <seq>
+			        	<cmd>
+			        		//boss wander    
+			        	</cmd>
+			        	<wait count="180"/>
+		        	</seq>
+	        	</loop>
+			</seq>
+			
+	        <seq>
+	            <wait count="180"/>
+	            <loop count="-1">
+	                <seq>
+			        	<loop count="8" var="i" init="1" update="i=i+1">
+			        	    <cmd>
+				        	    var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'water_drop',
+						        	gameUtil.COLOR_BLUE,
+						        	boss.getX(),boss.getY(),
+						        	2.4,90+23*(4.5-i)+28*MathUtils:sinDeg(boss.getTimer()*1.26),
+						        	false,0,false,true);
+						        bullet.setBound(false);
+						        var tasklist = TaskList:readScript("script/boss/card/wind_and_rain.xml");
+						        tasklist.setBinding('target',bullet);
+						        tasklist.setBinding('minvy',-1.57);
+						        tasklist.setBinding('g',-0.025);
+						        tasklist.get('create').act();
+						        game.getObjList().add(bullet);
+					        </cmd>
+			        	</loop>
+		        	
+		        		<wait count="4"/>
+	        		</seq>
+	        	</loop>
+	        </seq>
+	        
+	        
+	        <seq>
+	            <wait count="180"/>
+	            <loop count="-1">
+	                <seq>
+			        	<loop count="3" >
+			        	    <cmd>
+				        	    var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'grain_a',
+						        	gameUtil.COLOR_CYAN,
+						        	boss.getX(),boss.getY(),
+						        	ran:Float(0.5,1.2),ran:Float(0,180),
+						        	false,0,false,true);
+						        bullet.setBound(true);
+						        var tasklist = TaskList:readScript("script/boss/card/wind_and_rain.xml");
+						        tasklist.setBinding('target',bullet);
+						        tasklist.setBinding('minvy',-100);
+						        tasklist.setBinding('g',ran:Float(-0.02,-0.01));
+						        tasklist.get('create').act();
+						        game.getObjList().add(bullet);
+					        </cmd>
+			        	</loop>
+		        		<cmd>audio.PlaySound('kira00',0.2);</cmd>
+		        		<wait count="2"/>
+	        		</seq>
+	        	</loop>
+	        </seq>
+		</para>		        
+    </task>
+</tasklist>

@@ -1,0 +1,35 @@
+<seq>
+    	<seq name="init">
+    	    <cmd>
+    	        audio.PlayMusic('TH128_02',0.1);
+    	        var bg = new('org.tjuscs.bulletgame.model.Background',false,"script/background/background_bamboo.xml");
+    	        game.setGameBG(bg);
+    	    </cmd>
+    	</seq>
+	    <wait count="60" />
+	     
+	    <seq name="wave1">
+	    	<var name="dir" value="1"/>
+	    	<loop count="4">
+	    	    <seq>
+	    	        <loop count="8" var="i" init="1" update="i=i+1;">
+	    	            <seq>
+	    	                <cmd>
+	    	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+	    	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+	    	                    tasklist.setBinding("target",enemy);
+	    	                    tasklist.setBinding("x",240+(64+(60*i)%96)*dir);
+	    	                    tasklist.setBinding("y",612+(i*8)%64);
+	    	                    tasklist.get("create").act();
+	    	                    game.getObjList().add(enemy);
+	    	                </cmd>
+	    	                <wait count="6"/>
+	    	            </seq>
+	    	        </loop>
+	    	        <cmd>dir=-dir;</cmd>
+	    	        <wait count="60"/>
+	    	    </seq>
+    	    </loop>
+    	    <wait count="60"/>
+	    </seq>
+</seq>

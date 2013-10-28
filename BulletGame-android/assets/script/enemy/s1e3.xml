@@ -1,0 +1,48 @@
+<!-- Param: x -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(25,2,false,true);
+	        target.setDrop([0,0,1]);
+	        target.setX(x);
+	        target.setY(756);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	    <para>
+	        <loop count="-1">
+	            <seq>
+		            <if cond="target.getY() gt -144">
+		                <cmd>
+		                    var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'water_drop',
+					        	gameUtil.COLOR_BLUE,
+					        	target.getX(),target.getY(),
+					        	4,ran:Float(-10,10),
+					        	true,0,false,true);
+							game.getObjList().add(bullet);
+		                </cmd>
+		            </if>
+		            <cmd>
+		                audio.PlaySound('tan00',0.1);
+		            </cmd>
+		            <wait count="90"/>
+	            </seq>
+	        </loop>
+	        
+	        <loop count="-1">
+	            <seq>
+		            <if cond="target.getY() gt game.getPlayer().getY()">
+		                <cmd>
+		                    gameUtil.SetV2(target,3,0,true,true);
+		                </cmd>
+		            </if>
+		            <wait count="30"/>
+	            </seq>
+	        </loop>
+	    </para>
+	</task>
+</tasklist>
+    
