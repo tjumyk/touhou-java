@@ -13,8 +13,7 @@ For detailed information, see [Here](http://zh.wikipedia.org/zh-cn/東方Project
 This project is only an experimental implementation of that project using java and [libgdx](http://libgdx.badlogicgames.com/) game engine.
 
 ScreenShots
-------------------------
-![s1](https://raw.github.com/tjumyk/touhou-java/master/Screenshots/1.png)  
+------------------------ 
 ![s2](https://raw.github.com/tjumyk/touhou-java/master/Screenshots/2.png)  
 ![s3](https://raw.github.com/tjumyk/touhou-java/master/Screenshots/3.png)  
 ![s4](https://raw.github.com/tjumyk/touhou-java/master/Screenshots/4.png)  
