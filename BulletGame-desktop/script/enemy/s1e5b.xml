@@ -1,0 +1,52 @@
+<!-- Param: x -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(1,999999,false,false);
+	        target.setDrop([0,0,0]);
+	        target.setX(240);
+	        target.setY(400);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	   <para>
+		   <loop count="-1">
+		       <seq>
+			       <cmd>
+			           target.setX(target.getMaster().getX()+x);
+			           target.setY(target.getMaster().getY());
+			       </cmd>
+			       <wait count="1"/>
+		       </seq>
+		   </loop>
+		   
+		   <seq>
+		       <wait count="30"/>
+		       <loop count="-1">
+		           <seq>
+		               <var name="angle" value="0"/>
+		               <cmd>angle = gameUtil.Angle(target,game.getPlayer());</cmd>
+		               <loop count="9">
+		                   <seq>
+		                       <cmd>
+		                            var bullet = game.getBulletPool().obtain();
+					       			bullet.init(
+							        	'arrow_big',
+							        	gameUtil.COLOR_RED,
+							        	target.getX(),target.getY(),
+							        	5,angle,
+							        	false,0,true,true);
+									game.getObjList().add(bullet);
+		                       </cmd>
+		                       <wait count="4"/>
+		                   </seq>
+		               </loop>
+		               <wait count="15"/>
+		           </seq>
+		       </loop>
+		   </seq>
+		</para>
+	</task>
+</tasklist>
+    

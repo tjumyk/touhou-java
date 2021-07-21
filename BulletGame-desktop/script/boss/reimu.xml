@@ -1,0 +1,25 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+            var cardList = new('java.util.ArrayList');
+            var cardScriptList = [
+            	//"testlasercard.xml",
+            	"card3.xml",
+            	'card4.xml'
+           	];
+            
+            for(script : cardScriptList){
+	            var card = new('org.tjuscs.bulletgame.model.Bosscard');
+	            var tasklist = TaskList:readScript('script/boss/card/'+script);
+	            tasklist.setBinding('boss',target);
+	            tasklist.setBinding('card',card); 
+	            tasklist.get('create').act();        
+	            cardList.add(card);
+            }
+            
+	        target.init(480,800,'Reimu Hakurei',cardList);
+	        target.setImg('reimu');
+	    </cmd>
+	</task>
+</tasklist>
+    

@@ -1,0 +1,35 @@
+<!-- Param: x,y -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(1,5,false,true);
+	        target.setDrop([1,0,0]);
+	        target.setX(x);
+	        target.setY(y+256);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	    <seq>
+		    <move x="x" y="y" frames="60" mode="dec" target="target"/>
+		    <loop count="10">
+		        <seq>
+		            <cmd>
+		                audio.PlaySound('tan00',0.1);
+		                var bullet = game.getBulletPool().obtain();
+		       			bullet.init(
+				        	'arrow_big',
+				        	gameUtil.COLOR_RED,
+				        	x,y,
+				        	5,0,
+				        	true,0,true,true);
+						game.getObjList().add(bullet);
+					</cmd>
+		            <wait count="30"/>
+		        </seq>
+		    </loop>
+		    <move x="x" y="y+256" frames="120" mode="acc" target="target"/>
+		</seq>
+	</task>
+</tasklist>
+    

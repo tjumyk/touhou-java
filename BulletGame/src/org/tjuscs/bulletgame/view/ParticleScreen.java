@@ -92,6 +92,12 @@ public class ParticleScreen implements Screen {
 						Gdx.graphics.getHeight() / 2);
 				return true;
 			}
+
+			@Override
+			public boolean panStop(float x, float y, int pointer, int button) {
+				// TODO 自动生成的方法存根
+				return false;
+			}
 		});
 
 		Gdx.input.setInputProcessor(new InputMultiplexer(new InputProcessor() {

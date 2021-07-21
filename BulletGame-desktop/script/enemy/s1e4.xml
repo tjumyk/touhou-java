@@ -1,0 +1,68 @@
+<!-- Param: x -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(9,128,true,true);
+	        target.setDrop([0,10,10]);
+	        target.setX(x);
+	        target.setY(556);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	    <seq>
+		    <move x="x" y="444" frames="120" mode="dec" target="target"/>
+		    <loop count="-1">
+		        <seq>
+		            <loop count="5" var="angle" init="-60" update="angle=angle+30;">
+		                <loop count="4" var="i" init="0" update="i=i+1">
+		                    <seq>
+		                        <cmd>
+					                var bullet = game.getBulletPool().obtain();
+					       			bullet.init(
+							        	'arrow_big',
+							        	gameUtil.COLOR_BLUE,
+							        	x+32,target.getY(),
+							        	3+1/3*i,angle+(i-1.5)*(-8.0/3),
+							        	true,0,true,true);
+									game.getObjList().add(bullet);
+		                		</cmd>
+		                		<wait count="1"/>
+	                		</seq>
+	                	</loop>
+	                </loop>
+	                
+		            <cmd>
+                	    audio.PlaySound('tan00',0.05);
+                	</cmd>
+                	<wait count="18"/>
+	                	
+	                <loop count="5" var="angle" init="-60" update="angle=angle+30;">
+		                <loop count="4" var="i" init="0" update="i=i+1">
+		                    <seq>
+		                        <cmd>
+					                var bullet = game.getBulletPool().obtain();
+					       			bullet.init(
+							        	'arrow_big',
+							        	gameUtil.COLOR_BLUE,
+							        	x-32,target.getY(),
+							        	3+1/3*i,angle+(i-1.5)*8.0/3,
+							        	true,0,true,true);
+									game.getObjList().add(bullet);
+		                		</cmd>
+		                		<wait count="1"/>
+	                		</seq>
+	                	</loop>
+	                </loop>
+	                
+					<cmd>	
+						audio.PlaySound('tan00',0.05);
+					</cmd>
+					
+					<wait count="15"/>
+		        </seq>
+		    </loop>
+		</seq>
+	</task>
+</tasklist>
+    

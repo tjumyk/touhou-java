@@ -1,0 +1,16 @@
+<cmd>
+    var group = new('org.tjuscs.bulletgame.model.StageGroup',"Group 1");
+    game.getGameStage().add(group);
+    
+    var stage = new('org.tjuscs.bulletgame.model.Stage', "Stage 1", 20, 500, 500);
+	stage.setTask(Tasks:readScript("script/stage/stage1.xml"));
+	group.addStage(stage);
+	
+	var stage = new('org.tjuscs.bulletgame.model.Stage', "Stage 2", 5, 500, 500);
+	stage.setTask(Tasks:readScript("script/stage/stage2.xml"));
+	group.addStage(stage);
+	
+	var stage = new('org.tjuscs.bulletgame.model.Stage', "Stage 3", 5, 500, 500);
+	stage.setTask(Tasks:readScript("script/stage/stage3.xml"));
+	group.addStage(stage);
+</cmd>

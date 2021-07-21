@@ -1,0 +1,126 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+	        card.init(
+	       		'滅罪「正直者の死」',
+	           	2*60,30*60,60*60,
+	           	600,
+	           	10,10,10);
+	        card.setTask(tasklist.get('task'));
+        </cmd>
+    </task>
+    <task name="task">
+        <para>
+	        <seq>
+	            <move x="240" y="500" frames="180" mode="normal" target="boss"/>
+	            <wait count="120"/>
+		        <loop count="-1">
+				    <seq>
+				        <cmd>
+			                var laser = new('org.tjuscs.bulletgame.model.Laser');
+					        var tasklist = TaskList:readScript("script/boss/card/mokou_laser.xml");
+					        tasklist.setBinding('target',laser);
+					        tasklist.setBinding('master',boss);
+					        tasklist.setBinding('dir',1);
+			       			tasklist.get('create').act();
+							game.getObjList().add(laser);
+			            </cmd>
+			            <wait count="240"/>
+			            <cmd>
+			                var laser = new('org.tjuscs.bulletgame.model.Laser');
+					        var tasklist = TaskList:readScript("script/boss/card/mokou_laser.xml");
+					        tasklist.setBinding('target',laser);
+					        tasklist.setBinding('dir',1);
+					        tasklist.setBinding('master',boss);
+			       			tasklist.get('create').act();
+							game.getObjList().add(laser);
+			            </cmd>
+				        <wait count="240"/>
+				    </seq>
+				</loop>
+			</seq>
+			
+	        <seq>
+	            <wait count="180"/>
+	            <loop count="-1">
+	                <seq>
+	                    <loop count="15" var="i" init="0" update="i=i+1">
+	                        <cmd>
+	                            var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'grain_c',
+						        	gameUtil.COLOR_BLUE,
+						        	boss.getX(),boss.getY(),
+						        	2.5,(i-7.5)*90.0/14,
+						        	true,0,true,true);
+						        game.getObjList().add(bullet);
+	                        </cmd>
+	                    </loop>
+	                    <wait count="10"/>
+	                </seq>
+	            </loop>
+	        </seq>
+	        
+	        <seq>
+	            <wait count="180"/>
+	            <loop count="-1">
+	                <seq>
+	                    <var name="angle" value="3*MathUtils:sinDeg(boss.getTimer()*20)"/>
+	                    <loop count="8" var="i" init="0" update="i=i+1">
+	                        <cmd>
+	                            var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'grain_a',
+						        	gameUtil.COLOR_RED,
+						        	240+96,620,
+						        	8,(i-4)*270.0/7,
+						        	true,0,true,true);
+						        game.getObjList().add(bullet);
+	                        </cmd>
+	                    </loop>
+	                    <loop count="8" var="i" init="0" update="i=i+1">
+	                        <cmd>
+	                            var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'grain_a',
+						        	gameUtil.COLOR_RED,
+						        	240-96,620,
+						        	8,(i-4)*270.0/7,
+						        	true,0,true,true);
+						        game.getObjList().add(bullet);
+	                        </cmd>
+	                    </loop>
+	                    <loop count="8" var="i" init="0" update="i=i+1">
+	                        <cmd>
+	                            var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'grain_a',
+						        	gameUtil.COLOR_RED,
+						        	240+64,520,
+						        	8,(i-4)*270.0/7,
+						        	true,0,true,true);
+						        game.getObjList().add(bullet);
+	                        </cmd>
+	                    </loop>
+	                    <loop count="8" var="i" init="0" update="i=i+1">
+	                        <cmd>
+	                            var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'grain_a',
+						        	gameUtil.COLOR_RED,
+						        	240-64,520,
+						        	8,(i-4)*270.0/7,
+						        	true,0,true,true);
+						        game.getObjList().add(bullet);
+	                        </cmd>
+	                    </loop>
+	                    <cmd>
+	                        audio.PlaySound('tan00',0.1);
+	                    </cmd>
+	                    <wait count="2"/>
+	                </seq>
+	            </loop>
+	        </seq>
+		</para>		        
+    </task>
+</tasklist>

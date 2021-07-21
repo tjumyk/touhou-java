@@ -1,0 +1,76 @@
+<tasklist>
+    <task name="init">
+        <cmd>
+            res.LoadImageFromFile('temple_road','THlib/background/temple/road.png');
+			res.LoadImageFromFile('temple_ground','THlib/background/temple/ground.png');
+			res.LoadImageFromFile('temple_pillar','THlib/background/temple/pillar.png');
+	
+            var camera = render.get3DCamera();
+            camera.position.set(0,2.5f,-4);                  
+			camera.lookAt(0,0,0);               
+			camera.up.set(0,1,0);                           
+			camera.near = 1;                                     
+			camera.far = 10;                                       
+			camera.fieldOfView = 34.377468f; // 0.6rad
+			camera.update();
+			render.setFog(5,10,1,1,1,1);    
+			
+			data['z'] = 0;
+			data['speed'] = 0.02;                                    
+        </cmd>
+    </task>
+    <task name="frame">
+        <cmd>
+			data['z'] = data['speed'] + data['z'];
+        </cmd>
+    </task>
+    <task name="render">
+        <cmd>
+            var i = 0;
+			while(i le 4){
+				var dz = i * 2 - (data['z'] % 2);
+				render.Render4V("temple_ground",  0.5f,0,dz, 2.5f,0,dz, 2.5f,0,-2+dz, 0.5f,0,-2+dz);
+				render.Render4V("temple_ground",-0.5f,0,dz,-2.5f,0,dz,-2.5f,0,-2+dz,-0.5f,0,-2+dz);
+				render.Render4V("temple_road",-1,0,dz,1,0,dz,1,0,-2+dz,-1,0,-2+dz);
+				i = i+1;
+			}
+			
+			var j = 3;
+			var SQRT2_2 = Math:sqrt(0.5);
+			var camera = render.get3DCamera();
+			
+			while (j ge -1){
+				var dz=j*2-data['z']%2;
+				var z = dz +0.2;
+				var y1 = 1.8;
+				var y2 = 0;
+				var r = 0.15;
+				
+				var xPair = [0.85,-0.85];
+				for(x : xPair){
+					var a = 0;
+					var d = r * MathUtils:cosDeg(22.5);
+					var eyex = camera.position.x - x;
+					var eyez = camera.position.z - z;
+					var k = 1;
+					
+					while(k le 8){
+						if (d*MathUtils:cosDeg(a)*eyex + d*MathUtils:sinDeg(a)*eyez - d*d gt 0){
+							var blk=((1-MathUtils:cosDeg(a)*SQRT2_2+MathUtils:sinDeg(a)*SQRT2_2)*0.5)+0.0625;
+							blk = blk * 255;
+							res.SetImageState('temple_pillar','',255.0f,blk,blk,blk);
+							render.Render4V('temple_pillar',
+							x+r*MathUtils:cosDeg(a-22.5f),y1,z+r*MathUtils:sinDeg(a-22.5f),
+							x+r*MathUtils:cosDeg(a+22.5f),y1,z+r*MathUtils:sinDeg(a+22.5f),
+							x+r*MathUtils:cosDeg(a+22.5f),y2,z+r*MathUtils:sinDeg(a+22.5f),
+							x+r*MathUtils:cosDeg(a-22.5f),y2,z+r*MathUtils:sinDeg(a-22.5f))
+						}
+						a = a+45;
+						k = k + 1;
+					}
+				}
+				j = j - 1;
+			}
+        </cmd>
+    </task>
+</tasklist>

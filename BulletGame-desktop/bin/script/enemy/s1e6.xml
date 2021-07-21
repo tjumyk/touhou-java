@@ -1,0 +1,39 @@
+<!-- Param: x -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(15,1,false,true);
+	        target.setDrop([0,3,0]);
+	        target.setX(x);
+	        target.setY(756);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	    <para>
+		    <seq>
+			    <move x="x" y="0" frames="200" mode="normal" target="target"/>
+			    <cmd>gameUtil.Del(target)</cmd>
+			</seq>
+			<seq>
+			    <wait count="30"/>
+			    <loop count="-1">
+			        <seq>
+			            <loop count="2">
+				            <cmd>
+				                var laser = new('org.tjuscs.bulletgame.model.Laser');
+						        var tasklist = TaskList:readScript("script/enemy/s1e6l.xml");
+						        tasklist.setBinding('master',target);
+						        tasklist.setBinding('target',laser);
+				       			tasklist.get("create").act();
+								game.getObjList().add(laser);
+				            </cmd>
+			            </loop>
+			            <wait count="60"/>
+			        </seq>
+			    </loop>
+			</seq>
+		</para>
+	</task>
+</tasklist>
+    

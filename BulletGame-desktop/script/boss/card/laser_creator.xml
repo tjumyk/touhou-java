@@ -1,0 +1,55 @@
+<tasklist>
+	<task name="create">
+   	    <cmd>
+   	        target.init(
+	        	'ball_huge',
+	        	color,
+	        	boss.getX(),boss.getY(),
+	        	4.5,0,
+	        	true,0,false,false);
+            target.setTask(tasklist.get("task"));
+        </cmd>
+    </task>
+    
+    <task name="task">
+        <seq>
+	        <loop count="-1" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+	                    audio.PlaySound('tan00',0.1);
+	                    var bullet = game.getBulletPool().obtain();
+		       			bullet.init(
+				        	'ball_mid',
+				        	color,
+				        	target.getX(),target.getY(),
+				        	1.8,target.getRot()+5,
+				        	false,0,false,true);
+						game.getObjList().add(bullet);
+						
+						var bullet = game.getBulletPool().obtain();
+		       			bullet.init(
+				        	'ball_mid',
+				        	color,
+				        	target.getX(),target.getY(),
+				        	1.8,target.getRot()-5,
+				        	false,0,false,true);
+						game.getObjList().add(bullet);
+						
+						
+		                var laser = new('org.tjuscs.bulletgame.model.Laser');
+				        var tasklist = TaskList:readScript("script/boss/card/fox_laser.xml");
+				        tasklist.setBinding('target',laser);
+				        tasklist.setBinding('boss',boss);
+				        tasklist.setBinding('master',target);
+				        tasklist.setBinding('angle',target.getRot()+((i%2)-0.5)*180+ran:Float(-15,15));
+				        tasklist.setBinding('color',color);
+		       			tasklist.get('create').act();
+						game.getObjList().add(laser);
+			            
+	                </cmd>
+	                <wait count="7"/>
+	            </seq>
+	        </loop>
+        </seq>
+    </task>
+</tasklist>

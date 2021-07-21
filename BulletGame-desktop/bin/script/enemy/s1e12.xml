@@ -1,0 +1,84 @@
+<!-- Param: x -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(1,8,false,true);
+	        target.setDrop([0,0,3]);
+	        target.setX(x);
+	        target.setY(800);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	    <para>
+	        <seq>
+            	<move x="x" y="0" frames="360" mode="normal" target="target"/>
+            	<cmd>gameUtil.Del(target);</cmd>
+            </seq>
+            
+	        <seq>
+	            <loop count="-1">
+	                <seq>
+	                    <loop count="4">
+	                        <seq>
+	                            <cmd>
+	                                var list = [24,-24];
+	                                for(delta : list){
+		                                var bullet = game.getBulletPool().obtain();
+						       			bullet.init(
+								        	'ball_mid',
+								        	gameUtil.COLOR_RED,
+								        	target.getX()+delta, target.getY(),
+								        	3,-90,
+								        	false,0,true,true);
+										game.getObjList().add(bullet);
+									}
+								</cmd>
+	                            <wait count="8"/>
+	                        </seq>
+	                    </loop>
+	                    <wait count="40"/>
+	                </seq>
+	            </loop>
+	        </seq>
+	        
+	        <seq>
+	            <loop count="-1">
+	                <seq>
+	                    <var name="a1" value="gameUtil.Angle(target.getX()-24,target.getY(),game.getPlayer().getX(),game.getPlayer().getY())"/>
+	                    <var name="a2" value="gameUtil.Angle(target.getX()+24,target.getY(),game.getPlayer().getX(),game.getPlayer().getY())"/>
+	                    
+	                    <loop count="5">
+	                        <seq>
+	                            <cmd>
+	                                var bullet = game.getBulletPool().obtain();
+					       			bullet.init(
+							        	'arrow_small',
+							        	gameUtil.COLOR_BLUE,
+							        	target.getX()-24,target.getY(),
+							        	4.5,a1,
+							        	false,0,false,true);
+							        game.getObjList().add(bullet);
+										
+									var bullet = game.getBulletPool().obtain();
+					       			bullet.init(
+							        	'arrow_small',
+							        	gameUtil.COLOR_BLUE,
+							        	target.getX()+24,target.getY(),
+							        	4.5,a2,
+							        	false,0,false,true);
+							        game.getObjList().add(bullet);
+							        
+									audio.PlaySound('tan00',0.1);
+	                            </cmd>
+	                            <wait count="3"/>
+	                        </seq>
+	                    </loop>
+	                    <wait count="40"/>
+	                </seq>
+	            </loop>
+	        </seq>
+		</para>
+	</task>
+</tasklist>
+    

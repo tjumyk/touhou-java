@@ -1,0 +1,4 @@
+<seq>
+    <script path="script/loadRes_image.xml"/>
+	<script path="script/loadRes_audio.xml"/>
+</seq>

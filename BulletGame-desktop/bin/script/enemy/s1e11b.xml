@@ -1,0 +1,64 @@
+<!-- Param: x,angle -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(1,999999,false,false);
+	        target.setDrop([0,0,0]);
+	        target.setX(240);
+	        target.setY(400);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	   <para>
+		   <loop count="-1">
+		       <seq>
+			       <cmd>
+			           target.setX(target.getMaster().getX()+x);
+			           target.setY(target.getMaster().getY());
+			       </cmd>
+			       <wait count="1"/>
+		       </seq>
+		   </loop>
+		   
+		   <seq>
+		       <wait count="60"/>
+		       <loop count="-1">
+		           <seq>
+		               <loop count="5" var="i" init="0" update="i=i+1">
+		                   <cmd>
+	                            var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'ball_mid',
+						        	gameUtil.COLOR_RED,
+						        	target.getX(),target.getY(),
+						        	2.7+i*0.1,angle+(i-2)*1.5,
+						        	false,0,true,true);
+								game.getObjList().add(bullet);
+	                       </cmd>
+		               </loop>
+		               <loop count="5" var="i" init="0" update="i=i+1">
+		                   <cmd>
+	                            var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'ball_mid',
+						        	gameUtil.COLOR_RED,
+						        	target.getX(),target.getY(),
+						        	3.1-i*0.1,angle+180+(i-2)*1.5,
+						        	false,0,true,true);
+								game.getObjList().add(bullet);
+	                       </cmd>
+		               </loop>
+		               
+		               <cmd>
+		                   audio.PlaySound('tan00',0.1);
+		                   angle = angle + 16;
+	                   </cmd>
+		               <wait count="5"/>
+		           </seq>
+		       </loop>
+		   </seq>
+		</para>
+	</task>
+</tasklist>
+    

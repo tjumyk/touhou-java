@@ -1,0 +1,148 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+	        card.init(
+	       		'式輝「狐狸妖怪レーザー」',
+	           	2*60,15*60,60*60,
+	           	600,
+	           	10,10,10);
+	        card.setTask(tasklist.get('task'));
+        </cmd>
+    </task>
+    <task name="task">
+        <seq>
+            <move x="240" y="600" frames="180" mode="normal" target="boss"/>
+	        <loop count="-1">
+			    <seq>
+			        <cmd>
+		                var bullet = game.getBulletPool().obtain();
+						game.getObjList().add(bullet);
+						var tasklist = TaskList:readScript("script/boss/card/laser_creator.xml");
+				        tasklist.setBinding('target',bullet);
+				        tasklist.setBinding('boss',boss);
+				        tasklist.setBinding('color',gameUtil.COLOR_RED);
+				        tasklist.get('create').act();
+						audio.PlaySound('explode',0.3);
+		            </cmd>
+			        <loop count="16">
+			            <cmd>
+			                var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'ball_mid',
+					        	gameUtil.COLOR_RED,
+					        	boss.getX(),boss.getY(),
+					        	ran:Float(2.5,4.5),ran:Float(-5,5),
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+			            </cmd>
+			        </loop>
+			        <loop count="16">
+			            <cmd>
+			                var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'ball_mid',
+					        	gameUtil.COLOR_RED,
+					        	boss.getX(),boss.getY(),
+					        	ran:Float(1.8,2.5),ran:Float(-15,15),
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+			            </cmd>
+			        </loop>
+			        <loop count="8">
+			            <cmd>
+			                var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'ball_big',
+					        	gameUtil.COLOR_RED,
+					        	boss.getX(),boss.getY(),
+					        	ran:Float(2.5,4.5),ran:Float(-5,5),
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+			            </cmd>
+			        </loop>
+			        <loop count="8">
+			            <cmd>
+			                var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'ball_big',
+					        	gameUtil.COLOR_RED,
+					        	boss.getX(),boss.getY(),
+					        	ran:Float(1.8,2.5),ran:Float(-15,15),
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+			            </cmd>
+			        </loop>
+			        <wait count="30"/>
+			        <cmd>
+			            //boss wander
+			        </cmd>
+			        <wait count="120"/>
+			        
+			        <cmd>
+		                var bullet = game.getBulletPool().obtain();
+						game.getObjList().add(bullet);
+						var tasklist = TaskList:readScript("script/boss/card/laser_creator.xml");
+				        tasklist.setBinding('target',bullet);
+				        tasklist.setBinding('boss',boss);
+				        tasklist.setBinding('color',gameUtil.COLOR_BLUE);
+				        tasklist.get('create').act();
+						audio.PlaySound('explode',0.3);
+		            </cmd>
+			        <loop count="16">
+			            <cmd>
+			                var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'ball_mid',
+					        	gameUtil.COLOR_BLUE,
+					        	boss.getX(),boss.getY(),
+					        	ran:Float(2.5,4.5),ran:Float(-5,5),
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+			            </cmd>
+			        </loop>
+			        <loop count="16">
+			            <cmd>
+			                var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'ball_mid',
+					        	gameUtil.COLOR_BLUE,
+					        	boss.getX(),boss.getY(),
+					        	ran:Float(1.8,2.5),ran:Float(-15,15),
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+			            </cmd>
+			        </loop>
+			        <loop count="8">
+			            <cmd>
+			                var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'ball_big',
+					        	gameUtil.COLOR_BLUE,
+					        	boss.getX(),boss.getY(),
+					        	ran:Float(2.5,4.5),ran:Float(-5,5),
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+			            </cmd>
+			        </loop>
+			        <loop count="8">
+			            <cmd>
+			                var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'ball_big',
+					        	gameUtil.COLOR_BLUE,
+					        	boss.getX(),boss.getY(),
+					        	ran:Float(1.8,2.5),ran:Float(-15,15),
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+			            </cmd>
+			        </loop>
+			        <wait count="30"/>
+			        <cmd>
+			            //boss wander
+			        </cmd>
+			        <wait count="120"/>
+			    </seq>
+			</loop>
+		</seq>		        
+    </task>
+</tasklist>

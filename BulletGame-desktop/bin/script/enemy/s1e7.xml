@@ -1,0 +1,87 @@
+<!-- Param: x,y,rotate -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(9,160,true,false);
+	        target.setDrop([10,10,10]);
+	        target.setX(x);
+	        target.setY(y);
+	        target.setTask(tasklist.get("task"));
+	        
+	        target.setColli(false);
+	    </cmd>
+	</task>
+	<task name="task">
+	    <para>
+		    <seq>
+			    <loop count="8" var="i" init="1" update="i=i+1">
+			        <seq>
+			            <cmd>
+			                var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+			                var tasklist = TaskList:readScript("script/enemy/s1e7b.xml");
+			                tasklist.setBinding("target",enemy);
+			                enemy.setMaster(target);
+			                target.getServants().add(enemy);
+			                tasklist.setBinding("i",i);
+			                tasklist.setBinding("rotate",rotate);
+			                tasklist.setBinding("l",30+(i%2)*30);
+			                tasklist.get("create").act();
+			                game.getObjList().add(enemy);
+			                
+			                var laser = new('org.tjuscs.bulletgame.model.Laser');
+			                var tasklist = TaskList:readScript("script/enemy/s1e7l.xml");
+					        tasklist.setBinding('master',target);
+			                tasklist.setBinding('target',laser);
+					        tasklist.setBinding("i",i);
+			                tasklist.setBinding("rotate",rotate);
+			                tasklist.setBinding("l",30+(i%2)*30);
+			       			tasklist.get("create").act();
+			       			target.getServants().add(laser);
+							game.getObjList().add(laser);
+						</cmd>
+			        </seq>
+			    </loop>
+			    <move x="480-x" y="y" frames="720" mode="normal" target="target"/>
+			    <cmd>gameUtil.Del(target);</cmd>
+			</seq>
+			
+		    <seq>
+		        <loop count="-1">
+		            <seq>
+		                <cmd>audio.PlaySound('tan00',0.1);</cmd>
+		                <loop count="12" var="angle" init="ran:Float(0,360)" update="angle=angle+30;">
+		                    <loop count="6" var="i" init="0" update="i=i+1">
+		                        <cmd>
+			                        var bullet = game.getBulletPool().obtain();
+					       			bullet.init(
+							        	'arrow_big',
+							        	gameUtil.COLOR_BLUE,
+							        	target.getX(),target.getY(),
+							        	3,angle+(i-2.5)*2,
+							        	false,0,false,true);
+									game.getObjList().add(bullet);
+								</cmd>
+		                    </loop>
+		                </loop>
+		                <loop count="12" var="angle" init="ran:Float(0,360)" update="angle=angle+30;">
+		                    <loop count="6" var="i" init="0" update="i=i+1">
+		                        <cmd>
+			                        var bullet = game.getBulletPool().obtain();
+					       			bullet.init(
+							        	'arrow_big',
+							        	gameUtil.COLOR_RED,
+							        	target.getX(),target.getY(),
+							        	2,angle+15+(i-2.5)*2,
+							        	false,0,false,true);
+									game.getObjList().add(bullet);
+								</cmd>
+		                    </loop>
+		                </loop>
+		                <wait count="30"/>
+		            </seq>
+		        </loop>
+		    </seq>
+		</para>
+	</task>
+</tasklist>
+    

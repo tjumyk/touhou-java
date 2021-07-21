@@ -1,0 +1,75 @@
+<!-- Param: x,dir -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(5,10,false,true);
+	        target.setDrop([0,0,2]);
+	        target.setX(0);
+	        target.setY(800);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	    <para>
+	        <loop count="-1" var="i" init="0" update="i=i+1">
+	            <seq>
+	                <cmd>
+	                    target.setX(x+100*dir*MathUtils:sinDeg(i-15));
+	                    target.setY(800-i*1.5);
+	                </cmd>
+	                <wait count="1"/>
+	            </seq>
+	        </loop>
+            
+	        <loop count="60">
+                <seq>
+                    <if cond="ran:Float(0,1) lt 0.1">
+                        <cmd>
+                            var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'kite',
+					        	gameUtil.COLOR_PURPLE,
+					        	target.getX(),target.getY(),
+					        	ran:Float(2.5,3),ran:Float(-10,10),
+					        	true,0,true,true);
+					        game.getObjList().add(bullet);
+                        </cmd>
+                    </if>
+                    <wait count="1"/>
+                </seq>
+            </loop>
+	        
+	        <seq>
+	            <wait count="45"/>
+	            <loop count="-1">
+	                <seq>
+	                    <var name="angle" value="gameUtil.Angle(target,game.getPlayer())"/>
+	                    <loop count="4" var="v" init="2.5" update="v=v+0.15">
+	                        <seq>
+	                            <cmd>
+	                                audio.PlaySound('tan00',0.1);
+	                                var list = [35,-35,40,-40];
+	                                for(delta : list){
+		                                var bullet = game.getBulletPool().obtain();
+						       			bullet.init(
+								        	'arrow_big',
+								        	gameUtil.COLOR_BLUE,
+								        	target.getX(),target.getY(),
+								        	3.5,angle+delta,
+								        	false,0,false,true);
+								        game.getObjList().add(bullet);
+										
+										bullet.setVx(bullet.getVx()+target.getDx());
+									}
+	                            </cmd>
+	                            <wait count="8"/>
+	                        </seq>
+	                    </loop>
+	                    <wait count="168"/>
+	                </seq>
+	            </loop>
+	        </seq>
+		</para>
+	</task>
+</tasklist>
+    

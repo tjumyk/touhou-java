@@ -1,0 +1,92 @@
+<!-- Param: x -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(9,256,true,false);
+	        target.setDrop([10,10,10]);
+	        target.setX(x);
+	        target.setY(660);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	    <para>
+	        <seq>
+	            <var name="angle" value="ran:Float(-8,8)"/>
+	            <cmd>
+	                var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+	                var tasklist = TaskList:readScript("script/enemy/s1e11b.xml");
+	                tasklist.setBinding("target",enemy);
+	                enemy.setMaster(target);
+	                target.getServants().add(enemy);
+	                tasklist.setBinding("x",64);
+	                tasklist.setBinding("angle",angle);
+	                tasklist.get("create").act();
+	                game.getObjList().add(enemy);
+	                
+	                var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+	                var tasklist = TaskList:readScript("script/enemy/s1e11b.xml");
+	                tasklist.setBinding("target",enemy);
+	                enemy.setMaster(target);
+	                target.getServants().add(enemy);
+	                tasklist.setBinding("x",-64);
+	                tasklist.setBinding("angle",angle+90);
+	                tasklist.get("create").act();
+	                game.getObjList().add(enemy);
+	            </cmd>
+	            <move x="480-x" y="160" frames="720" mode="normal" target="target"/>
+	            <cmd>gameUtil.Del(target);</cmd>
+	        </seq>
+            
+	        <loop count="60">
+                <seq>
+                    <if cond="ran:Float(0,1) lt 0.1">
+                        <cmd>
+                            var bullet = game.getBulletPool().obtain();
+			       			bullet.init(
+					        	'kite',
+					        	gameUtil.COLOR_PURPLE,
+					        	target.getX(),target.getY(),
+					        	ran:Float(2.5,3),ran:Float(-10,10),
+					        	true,0,true,true);
+					        game.getObjList().add(bullet);
+                        </cmd>
+                    </if>
+                    <wait count="1"/>
+                </seq>
+            </loop>
+	        
+	        <seq>
+	            <wait count="45"/>
+	            <loop count="-1">
+	                <seq>
+	                    <var name="angle" value="gameUtil.Angle(target,game.getPlayer())"/>
+	                    <loop count="4" var="v" init="2.5" update="v=v+0.15">
+	                        <seq>
+	                            <cmd>
+	                                audio.PlaySound('tan00',0.1);
+	                                var list = [35,-35,40,-40];
+	                                for(delta : list){
+		                                var bullet = game.getBulletPool().obtain();
+						       			bullet.init(
+								        	'arrow_big',
+								        	gameUtil.COLOR_BLUE,
+								        	target.getX(),target.getY(),
+								        	3.5,angle+delta,
+								        	false,0,false,true);
+								        game.getObjList().add(bullet);
+										
+										bullet.setVx(bullet.getVx()+target.getDx());
+									}
+	                            </cmd>
+	                            <wait count="8"/>
+	                        </seq>
+	                    </loop>
+	                    <wait count="168"/>
+	                </seq>
+	            </loop>
+	        </seq>
+		</para>
+	</task>
+</tasklist>
+    

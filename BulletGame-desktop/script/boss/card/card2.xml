@@ -1,0 +1,121 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+	        card.init(
+	       		'禁弾「过去を刻む时计」',
+	           	2*60,15*60,60*60,
+	           	600,
+	           	10,10,10);
+	        card.setTask(tasklist.get('task'));
+        </cmd>
+    </task>
+    <task name="task">
+        <seq>
+            <move x="240" y="600" frames="60" mode="normal" target="boss"/>
+	        <para>
+				<wait count="60"/>
+				<loop count="-1">
+				    <seq>
+				        <loop count="18">
+				            <seq>
+				                <loop count="17" var="i" init="0" update="i=i+1">
+				                    <cmd>
+					                    var bullet = game.getBulletPool().obtain();
+						       			bullet.init(
+								        	'ball_mid',
+								        	gameUtil.COLOR_RED,
+								        	boss.getX(),boss.getY(),
+								        	2,(i-8)*150/16.0,
+								        	true,0,true,true);
+										game.getObjList().add(bullet);
+									</cmd>
+				                </loop>
+				                <loop count="34" var="i" init="0" update="i=i+1">
+				                    <cmd>
+					                    var bullet = game.getBulletPool().obtain();
+						       			bullet.init(
+								        	'ball_mid',
+								        	gameUtil.COLOR_RED,
+								        	boss.getX(),boss.getY(),
+								        	5,90+(i-16.5)*240/33.0,
+								        	false,0,true,true);
+										game.getObjList().add(bullet);
+									</cmd>
+				                </loop>
+				                <cmd>audio.PlaySound('tan00',0.1);</cmd>
+				                <wait count="15"/>
+				            </seq>
+				        </loop>
+				        <wait count="60"/>
+				        
+				        <loop count="18">
+				            <seq>
+				                <loop count="7" var="i" init="0" update="i=i+1">
+				                    <cmd>
+					                    var bullet = game.getBulletPool().obtain();
+						       			bullet.init(
+								        	'ball_mid',
+								        	gameUtil.COLOR_RED,
+								        	boss.getX(),boss.getY(),
+								        	3.5,(i-3)*10,
+								        	true,0,true,true);
+										game.getObjList().add(bullet);
+									</cmd>
+				                </loop>
+				                <loop count="34" var="i" init="0" update="i=i+1">
+				                    <cmd>
+					                    var bullet = game.getBulletPool().obtain();
+						       			bullet.init(
+								        	'ball_mid',
+								        	gameUtil.COLOR_RED,
+								        	boss.getX(),boss.getY(),
+								        	5,90+(i-16.5)*240/33.0,
+								        	false,0,true,true);
+										game.getObjList().add(bullet);
+									</cmd>
+				                </loop>
+				                <cmd>audio.PlaySound('tan00',0.1);</cmd>
+				                <wait count="15"/>
+				            </seq>
+				        </loop>
+				        <wait count="60"/>
+				        
+				        <loop count="18">
+				            <seq>
+				                <loop count="17" var="i" init="0" update="i=i+1">
+				                    <cmd>
+					                    var bullet = game.getBulletPool().obtain();
+						       			bullet.init(
+								        	'ball_mid',
+								        	gameUtil.COLOR_RED,
+								        	boss.getX(),boss.getY(),
+								        	2,(i-8)*150/16.0,
+								        	true,0,true,true);
+										game.getObjList().add(bullet);
+									</cmd>
+				                </loop>
+				                <loop count="34" var="i" init="0" update="i=i+1">
+				                    <cmd>
+					                    var bullet = game.getBulletPool().obtain();
+						       			bullet.init(
+								        	'ball_mid',
+								        	gameUtil.COLOR_RED,
+								        	boss.getX(),boss.getY(),
+								        	5,90+(i-16.5)*240/33.0,
+								        	false,0,true,true);
+										game.getObjList().add(bullet);
+									</cmd>
+				                </loop>
+				                <cmd>audio.PlaySound('tan00',0.1);</cmd>
+				                <wait count="15"/>
+				            </seq>
+				        </loop>
+				        
+				        <wait count="60"/>
+				    </seq>
+				</loop>
+			</para>
+	        <move x="480" y="800" frames="120" mode="normal" target="boss"/>
+		</seq>		        
+    </task>
+</tasklist>
