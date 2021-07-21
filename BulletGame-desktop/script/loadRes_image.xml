@@ -1,0 +1,185 @@
+<cmd>
+	res.LoadTexture("bullet1", "THlib/bullet/bullet1.png", true);
+	res.LoadImageGroup("preimg", "bullet1", 80, 0, 32, 32, 1, 8);
+	res.LoadImageGroup("arrow_big", "bullet1", 0, 0, 16, 16, 1, 16, 4, 4);
+	res.LoadImageGroup("gun_bullet", "bullet1", 24, 0, 16, 16, 1, 16, 4, 3);
+	res.LoadImageGroup("gun_bullet_void", "bullet1", 56, 0, 16, 16, 1, 16, 4, 3);
+	res.LoadImageGroup("butterfly", "bullet1", 112, 0, 32, 32, 1, 8, 4, 4);
+	res.LoadImageGroup("square", "bullet1", 152, 0, 16, 16, 1, 16, 4, 4);
+	res.LoadImageGroup("ball_mid", "bullet1", 176, 0, 32, 32, 1, 8, 4, 4);
+	res.LoadImageGroup("mildew", "bullet1", 208, 0, 16, 16, 1, 16, 3, 3);
+	res.LoadImageGroup("ellipse", "bullet1", 224, 0, 32, 32, 1, 8, 7, 5);
+	
+	res.LoadTexture("bullet2", "THlib/bullet/bullet2.png");
+	res.LoadImageGroup("star_small", "bullet2", 96, 0, 16, 16, 1, 16, 3, 3);
+	res.LoadImageGroup("star_big", "bullet2", 224, 0, 32, 32, 1, 8, 6, 6);
+	res.LoadImageGroup("ball_huge", "bullet2", 0, 0, 64, 64, 1, 4, 20, 20);
+	res.LoadImageGroup("fade_ball_huge", "bullet2", 0, 0, 64, 64, 1, 4, 20, 20);
+	res.LoadImageGroup("ball_big", "bullet2", 192, 0, 32, 32, 1, 8, 8, 8);
+	res.LoadImageGroup("ball_small", "bullet2", 176, 0, 16, 16, 1, 16, 2, 2);
+	res.LoadImageGroup("grain_a", "bullet2", 160, 0, 16, 16, 1, 16, 3, 3);
+	res.LoadImageGroup("grain_b", "bullet2", 128, 0, 16, 16, 1, 16, 3, 3);
+	
+	res.LoadTexture("bullet3", "THlib/bullet/bullet3.png");
+	res.LoadAnimation("water_drop1", "bullet3", 176, 0, 32, 32, 1, 4, 4, 6, 6);
+	res.LoadAnimation("water_drop2", "bullet3", 176, 128, 32, 32, 1, 4, 4, 6, 6);
+	res.LoadAnimation("water_drop3", "bullet3", 224, 0, 32, 32, 1, 4, 4, 6, 6);
+	res.LoadAnimation("water_drop4", "bullet3", 224, 128, 32, 32, 1, 4, 4, 6, 6);
+			
+	res.LoadImageGroup("knife", "bullet3", 0, 0, 32, 32, 1, 8, 10, 3);
+	res.LoadImageGroup("grain_c", "bullet3", 48, 0, 16, 16, 1, 16, 3, 3);
+	res.LoadImageGroup("arrow_small", "bullet3", 80, 0, 16, 16, 1, 16, 3, 3);
+	res.LoadImageGroup("kite", "bullet3", 112, 0, 16, 16, 1, 16, 3, 3);
+	
+	res.LoadTexture("bullet4", "THlib/bullet/bullet4.png");
+	res.LoadImageGroup("star_big_b", "bullet4", 32, 0, 32, 32, 1, 8, 6, 6);
+	res.LoadImageGroup("ball_mid_b", "bullet4", 64, 0, 32, 32, 1, 8, 5, 5);
+	
+	res.LoadImageGroup("arrow_mid", "bullet4", 96, 0, 32, 32, 1, 8, 3, 3);
+	var i = 1;
+	while (i le 8){
+		res.SetImageCenter("arrow_mid" + i, 24, 16);
+		i = i+1;
+	}
+	res.LoadImageGroup("heart", "bullet4", 128, 0, 32, 32, 1, 8, 9, 9);
+	res.LoadImageGroup("knife_b", "bullet4", 192, 0, 32, 32, 1, 8, 10, 3);
+	var i = 1;
+	while (i le 8){
+		res.LoadImage("ball_mid_c" + i, "bullet4", 232, i * 32 - 24, 16, 16, 4, 4);
+		i=i+1;
+	}
+	res.LoadImageGroup("money", "bullet4", 168, 0, 16, 16, 1, 8, 3, 3);
+	res.LoadImageGroup("ball_mid_d", "bullet4", 168, 128, 16, 16, 1, 8, 3, 3);
+	
+	res.LoadTexture("misc","THlib/misc/misc.png");
+	res.LoadImage("player_aura","misc",128,0,64,64);
+	res.LoadImageGroup("bubble","misc",192,0,64,64,1,4);
+	res.LoadImage("boss_aura","misc",0,128,128,128);
+	res.SetImageState("boss_aura","mul+add", 255, 255, 255, 128);
+	res.LoadImage("border","misc",128,192,64,64);
+	res.LoadImage("leaf","misc",0,32,32,32);
+	res.LoadImage("leaf","misc",0,32,32,32);
+	res.LoadTexture("particles","THlib/misc/particles.png");
+	res.LoadImageGroup("parimg","particles",0,0,32,32,4,4);
+
+	res.LoadImageFromFile("particles1","particles/particles1.png");
+	res.LoadImageFromFile("particles2","particles/particles2.png");
+	res.LoadImageFromFile("particles3","particles/particles3.png");
+	res.LoadImageFromFile("particles4","particles/particles4.png");
+	res.LoadImageFromFile("particles5","particles/particles5.png");
+	res.LoadImageFromFile("particles6","particles/particles6.png");
+	res.LoadImageFromFile("particles7","particles/particles7.png");
+	res.LoadImageFromFile("particles8","particles/particles8.png");
+	res.LoadImageFromFile("particles9","particles/particles9.png");
+	res.LoadImageFromFile("particles10","particles/particles10.png");
+	res.LoadImageFromFile("particles11","particles/particles11.png");
+	res.LoadImageFromFile("particles12","particles/particles12.png");
+	res.LoadImageFromFile("particles13","particles/particles13.png");
+	res.LoadImageFromFile("particles14","particles/particles14.png");
+	res.LoadImageFromFile("particles15","particles/particles15.png");
+	res.LoadImageFromFile("particles16","particles/particles16.png");
+	
+	res.LoadPSPool("player_death_ef","THlib/player/player_death_ef.p","particles1");
+	res.LoadPSPool("graze","THlib/player/graze.p","particles1");
+	res.LoadPS("player_death_ef","player_death_ef");
+	res.LoadPS("graze","graze");
+	
+	res.LoadTexture("reimu_player", "THlib/player/reimu/reimu.png");
+	res.LoadImageGroup("reimu_player", "reimu_player", 0, 0, 32, 48, 8, 3, 0, 0);
+	res.LoadImage("reimu_bullet_red", "reimu_player", 0, 176, 64, 16,
+			16, 16);
+	res.SetImageState("reimu_bullet_red", "", 255, 255, 255, 128);
+	res.SetImageCenter("reimu_bullet_red", 56, 8);
+	res.LoadImage("reimu_bullet_blue", "reimu_player", 0, 160, 16, 16,
+			16, 16);
+	res.SetImageState("reimu_bullet_blue", "", 255, 255, 255, 128);
+	res.LoadImage("reimu_support", "reimu_player", 64, 144, 16, 16);
+	res.LoadImage("reimu_bullet_ef_img", "reimu_player", 48, 144, 16,
+			16);
+	res.LoadPSPool("reimu_bullet_ef",
+			"THlib/player/reimu/reimu_bullet_ef.p", "particles16");
+	res.LoadPSPool("reimu_sp_ef", "THlib/player/reimu/reimu_sp_ef.p",
+			"particles1");
+	res.LoadPS("reimu_sp_ef","reimu_sp_ef");
+	
+	res.LoadTexture("item","THlib/item/item.png");
+	res.LoadImageGroup("item", "item", 0, 0, 32, 32, 2, 4, 8, 8);
+	res.LoadImageGroup("item_up", "item", 64, 0, 32, 32, 2, 4);
+	res.SetImageState("item8","", 255, 255, 255, 192);
+	
+	res.LoadTexture("laser","THlib/laser/laser.png");
+	res.LoadImageGroup("laser_1","laser",  0,0, 64,32,1,8);
+	res.LoadImageGroup("laser_2","laser", 64,0,128,32,1,8);
+	res.LoadImageGroup("laser_3","laser",192,0, 64,32,1,8);
+	res.LoadImageGroup("laser_node","bullet1",80,0,32,32,1,8);
+	
+	res.LoadTexture('enemy1','THlib\\enemy\\enemy1.png');
+	res.LoadImageGroup('enemy1_','enemy1',0,384,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy2_','enemy1',0,416,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy3_','enemy1',0,448,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy4_','enemy1',0,480,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy5_','enemy1',0,0,48,32,4,3,8,8);
+	res.LoadImageGroup('enemy6_','enemy1',0,96,48,32,4,3,8,8);
+	res.LoadImageGroup('enemy7_','enemy1',320,0,48,48,4,3,16,16);
+	res.LoadImageGroup('enemy8_','enemy1',320,144,48,48,4,3,16,16);
+	res.LoadImageGroup('enemy9_','enemy1',0,192,64,64,4,3,16,16);
+	res.LoadImageGroup('kedama','enemy1',256,320,32,32,2,2,8,8);
+	res.LoadImageGroup('enemy_orb','enemy1',192,64,32,32,4,1,8,8);
+	res.LoadImageGroup('enemy_orb_ring','enemy1',192,96,32,32,4,1);
+	
+	var i = 1;
+	while(i le 4){
+		res.SetImageState('enemy_orb_ring'+i,'add+add',64,64,64,256);
+		i = i + 1;
+	}
+	res.LoadImageGroup('enemy_aura','enemy1',192,32,32,32,4,1);
+	var i = 1;
+	while(i le 4){ 
+		res.SetImageState('enemy_aura'+i,'',256,256,256,128);
+		i = i + 1;
+	}
+	
+	res.LoadTexture('enemy2','THlib\\enemy\\enemy2.png');
+	res.LoadImageGroup('enemy10_','enemy2',0,0,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy11_','enemy2',0,32,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy12_','enemy2',0,64,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy13_','enemy2',0,96,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy14_','enemy2',0,128,64,64,6,2,16,16);
+	res.LoadImageGroup('enemy15_','enemy2',0,288,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy16_','enemy2',0,352,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy17_','enemy2',0,416,32,32,12,1,8,8);
+	res.LoadImageGroup('enemy18_','enemy2',0,480,32,32,12,1,8,8);
+	
+	res.LoadTexture('boss','THlib\\enemy\\boss.png');
+	res.LoadImageGroup('bossring1','boss',80,0,16,8,1,16);
+	var i=1;
+	while(i le 16){ 
+		res.SetImageState('bossring1'+i,'mul+add',0xFF,0xFF,0xFF,0x80);
+		i = i+1;
+	}
+	res.LoadImageGroup('bossring2','boss',64,0,16,8,1,16);
+	var i=1;
+	while(i le 16){
+		res.SetImageState('bossring2'+i,'mul+add',0xFF,0xFF,0xFF,0x80);
+		i = i + 1;
+	}
+	res.LoadImage('spell_card_ef','boss',96,0,16,128);
+	res.LoadImage('hpbar','boss',116,0,8,128);
+	res.SetImageCenter('hpbar',0,0);
+	res.LoadTexture('undefined','THlib\\enemy\\undefined.png');
+	res.LoadImage('undefined','undefined',0,0,128,128,16,16);
+	res.SetImageState('undefined','mul+add',0xFF,0xFF,0xFF,0x80);
+	
+	res.LoadTexture('marisa',"THlib\\enemy\\marisa.png");
+	res.LoadAnimation("marisa",'marisa',0,0,64,80,4,3,5,16,16,false);
+	res.LoadTexture('reimu',"THlib\\enemy\\reimu.png");
+	res.LoadAnimation("reimu",'reimu',0,0,64,80,4,3,5,16,16,false);
+	res.LoadTexture('sakuya',"THlib\\enemy\\sakuya.png");
+	res.LoadAnimation("sakuya",'sakuya',0,0,64,80,4,2,5,16,16,false);
+	
+	res.LoadFont('yahei','THlib/ui/font/yahei.fnt');
+	res.LoadFont('lishu','THlib/ui/font/lishu.fnt');
+	
+	res.LoadImageFromFile('black','THlib/ui/black.png');
+	res.LoadImageFromFile('white','THlib/ui/white.png');
+</cmd>

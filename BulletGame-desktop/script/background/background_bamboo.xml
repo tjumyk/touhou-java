@@ -1,0 +1,88 @@
+<tasklist>
+    <task name="init">
+        <cmd>
+            res.LoadTexture('bamboo_ground','THlib\\background\\bamboo\\ground.png');
+			res.LoadImage('bamboo_ground','bamboo_ground',0,0,256,256,0,0);
+			res.LoadTexture('bamboo','THlib\\background\\bamboo\\bamboo.png');
+			res.LoadImage('trunk','bamboo',488,0,24,512,0,0);
+			res.SetImageCenter('trunk',12,512);
+			res.LoadImage('leave1','bamboo',0,0,256,256,0,0);
+			res.LoadImage('leave2','bamboo',0,256,320,256,0,0);
+	
+            var camera = render.get3DCamera();
+            camera.position.set(0,3.5f,-5);                  
+			camera.lookAt(0,1.5f,0);               
+			camera.up.set(0,1,0);                           
+			camera.near = 1;                                     
+			camera.far = 24;                                       
+			camera.fieldOfView = 40.107046f; // 0.7rad
+			camera.update();
+			render.setFog(7,20,0.75f,0.75f,0.75f,1);    
+			
+			data['list']=new('java.util.LinkedList');
+			data['imgs']=['trunk','leave1','leave2'];
+			data['speed']=0.07;
+			data['interval']=0.5;
+			data['acc']=data['interval'];
+			
+			/*
+			var i = 1;
+			while(i le 400){   
+				bg.getFrameTask().act();
+				bg.getFrameTask().reset();
+				i = i + 1;
+			} 
+			*/                                
+        </cmd>
+    </task>
+    <task name="frame">
+        <cmd>
+            var list = data['list'];
+            data['acc']=data['acc']+data['speed'];
+			if (data['acc'] ge data['interval']) {
+				data['acc']=data['acc']-data['interval'];
+				
+				list.add(0,[0, 0.9+ran:rand()*3,0,ran:rand()*0.4-0.2,0.7+0.3*ran:rand(),24+0.1*ran:rand()]);
+				list.add(0,[0,-0.9-ran:rand()*3,0,ran:rand()*0.4-0.2,0.7+0.3*ran:rand(),24+0.1*ran:rand()]);
+				
+				data['acc']=data['acc']-data['interval'];
+				list.add(0,[ran:Int(1,2), 1.5+ran:rand()*2,1.6+ran:rand(),ran:rand()*0.6-0.3,-0.7-0.3*ran:rand(),24+0.1*ran:rand()]);
+				list.add(0,[ran:Int(1,2),-1.5-ran:rand()*2,1.6+ran:rand(),ran:rand()*0.6-0.3, 0.7+0.3*ran:rand(),24+0.1*ran:rand()]);
+			}
+			
+			for(item : list){
+				item[5]=item[5]-data['speed'];
+			}
+			
+			var ok = false;
+			while (!ok){
+				if (data['list'][data['list'].size()-1][5] lt -6) {
+					data['list'].remove(data['list'].size()-1);
+				}else {
+					ok = true;
+				}
+			}
+        </cmd>
+    </task>
+    <task name="render">
+        <cmd>
+            render.RenderClear(0.75f, 0.75f, 0.75f, 1);
+            
+            var j = 0;
+			while(j le 6){
+				var dz=j*4-bg.timer*data['speed']%4;
+				var i = -2;
+				while(i le 1){
+					render.Render4V('bamboo_ground',i*4,0,dz,4+i*4,0,dz,4+i*4,0,-4+dz,i*4,0,-4+dz);
+					i = i + 1;
+				}
+				j = j+1;
+			}
+			
+			for (d : data['list']) {
+				render.Render3D(data['imgs'][d[0]],d[1],d[2],d[3]*57,d[4],Math:abs(d[4]),d[5]);
+				//render.Render3D(data['imgs'][0],0,0,0,1,1,5);
+			}
+        </cmd>
+    </task>
+</tasklist>

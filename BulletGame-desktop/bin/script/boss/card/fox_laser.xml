@@ -1,0 +1,21 @@
+<tasklist>
+	<task name="create">
+   	    <cmd>
+            target.init(
+	        	color,
+	        	master.getX(),master.getY(),
+	        	0,0,512,0,8,8);
+	        target.setRot(angle);
+	       	target.setTask(tasklist.get("task"));
+        </cmd>
+    </task>
+    
+    <task name="task">
+        <seq>
+	        <wait count="30"/>
+	        <cmd>target.turnOn(30,false);</cmd>
+	        <wait count="225"/>
+	        <cmd>gameUtil.Del(target);</cmd>
+        </seq>
+    </task>
+</tasklist>

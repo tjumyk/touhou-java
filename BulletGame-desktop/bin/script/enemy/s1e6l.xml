@@ -1,0 +1,12 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+            target.init(
+	        	gameUtil.COLOR_RED,
+	        	master.getX(),master.getY(),
+	        	0,32,16,32,6,0);
+        	gameUtil.SetV2(target,4,0,true,true);
+        	target.turnOn(30,false);
+        </cmd>
+    </task>
+</tasklist>

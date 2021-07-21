@@ -1,0 +1,611 @@
+<seq>
+    	<seq name="init">
+    	    <cmd>
+    	        audio.PlayMusic('TH128_02',0.1);
+    	        var bg = new('org.tjuscs.bulletgame.model.Background',false,"script/background/background_magic_forest.xml");
+    	        game.setGameBG(bg);
+    	    </cmd>
+    	</seq>
+	    <wait count="60" />
+	     
+	    <!-- 
+	    <seq name="wave1">
+	    	<var name="dir" value="1"/>
+	    	<loop count="4">
+	    	    <seq>
+	    	        <loop count="8" var="i" init="1" update="i=i+1;">
+	    	            <seq>
+	    	                <cmd>
+	    	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+	    	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+	    	                    tasklist.setBinding("target",enemy);
+	    	                    tasklist.setBinding("x",240+(64+(60*i)%96)*dir);
+	    	                    tasklist.setBinding("y",612+(i*8)%64);
+	    	                    tasklist.get("create").act();
+	    	                    game.getObjList().add(enemy);
+	    	                </cmd>
+	    	                <wait count="6"/>
+	    	            </seq>
+	    	        </loop>
+	    	        <cmd>dir=-dir;</cmd>
+	    	        <wait count="60"/>
+	    	    </seq>
+    	    </loop>
+    	    <wait count="60"/>
+	    </seq>
+	    
+	    <seq name="wave2">
+	    	<loop count="7" var="i" init="1" update="i=i+1">
+	    	    <seq>
+	    	        <cmd>
+   	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+   	                    var tasklist = TaskList:readScript("script/enemy/s1e2.xml");
+   	                    tasklist.setBinding("target",enemy);
+   	                    tasklist.setBinding("x",240+((i*3)%7-3)*48);
+   	                    tasklist.setBinding("y",660-(((i*3)%7)%2)*32);
+   	                    tasklist.get("create").act();
+   	                    game.getObjList().add(enemy);
+   	                </cmd>
+	    	        <wait count="15"/>
+	    	    </seq>
+    	    </loop>
+    	    <wait count="120"/>
+	    </seq>
+	    
+	    <seq name="wave3">
+	    	<loop count="48" var="i" init="1" update="i=i+1">
+	    	    <seq>
+	    	        <cmd>
+   	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+   	                    var tasklist = TaskList:readScript("script/enemy/s1e3.xml");
+   	                    tasklist.setBinding("target",enemy);
+   	                    tasklist.setBinding("x",240+(i*217)%352-176);
+   	                    tasklist.get("create").act();
+   	                    game.getObjList().add(enemy);
+   	                </cmd>
+	    	        <wait count="6"/>
+	    	    </seq>
+    	    </loop>
+    	    <wait count="30"/>
+	    </seq>
+	    
+	    <seq name="wave4">
+	        <var name="dx" value="36"/>
+	        <var name="dy" value="0"/>
+	        <loop count="4">
+	            <seq>
+	                <loop count="4" var="i" init="1" update="i = i + 1;">
+	                    <seq>
+	                        <cmd>
+	                            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+		   	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+		   	                    tasklist.setBinding("target",enemy);
+		   	                    tasklist.setBinding("x",240+64+(60*i)%96+dx);
+		   	                    tasklist.setBinding("y",612+(i*8)%64);
+		   	                    tasklist.get("create").act();
+		   	                    game.getObjList().add(enemy);
+		   	                
+		   	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+		   	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+		   	                    tasklist.setBinding("target",enemy);
+		   	                    tasklist.setBinding("x",240-(64+(60*i)%96)+dx);
+		   	                    tasklist.setBinding("y",612+(i*8)%64);
+		   	                    tasklist.get("create").act();
+		   	                    game.getObjList().add(enemy);
+                            </cmd>
+	                        <wait count="6"/>
+	                    </seq>
+	                </loop>
+	                <wait count="30"/>
+	                <cmd>
+   	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+   	                    var tasklist = TaskList:readScript("script/enemy/s1e2.xml");
+   	                    tasklist.setBinding("target",enemy);
+   	                    tasklist.setBinding("x",240+32);
+   	                    tasklist.setBinding("y",644+dy);
+   	                    tasklist.get("create").act();
+   	                    game.getObjList().add(enemy);
+   	                
+   	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+   	                    var tasklist = TaskList:readScript("script/enemy/s1e2.xml");
+   	                    tasklist.setBinding("target",enemy);
+   	                    tasklist.setBinding("x",240-32);
+   	                    tasklist.setBinding("y",644+dy);
+   	                    tasklist.get("create").act();
+   	                    game.getObjList().add(enemy);
+   	                </cmd>
+	                <cmd>dx = dx - 24; dy = dy - 24;</cmd>
+	                <wait count="60"/>
+	            </seq>
+	        </loop>
+	    </seq>
+	    <seq name="wave5">
+	        <cmd>
+	            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e4.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        <loop count="6" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+  	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+  	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+  	                    tasklist.setBinding("target",enemy);
+  	                    tasklist.setBinding("x",240+(64+(60*i)%96));
+  	                    tasklist.setBinding("y",612+(i*8)%64);
+  	                    tasklist.get("create").act();
+  	                    game.getObjList().add(enemy);
+  	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="120"/>
+	        
+	        <loop count="6" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+  	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+  	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+  	                    tasklist.setBinding("target",enemy);
+  	                    tasklist.setBinding("x",240-(64+(60*i)%96));
+  	                    tasklist.setBinding("y",612+(i*8)%64);
+  	                    tasklist.get("create").act();
+  	                    game.getObjList().add(enemy);
+  	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="150"/>
+	        
+	        <loop count="24" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+  	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+   	                    var tasklist = TaskList:readScript("script/enemy/s1e3.xml");
+   	                    tasklist.setBinding("target",enemy);
+   	                    tasklist.setBinding("x",240+(i*217)%352-176);
+   	                    tasklist.get("create").act();
+   	                    game.getObjList().add(enemy);
+  	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        
+	        <cmd>
+	            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e4.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240-96);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        <wait count="60"/>
+	        
+	        <cmd>
+	            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e4.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240+96);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        <wait count="180"/>
+	    </seq>
+	     
+	    
+	     
+	    
+	    <seq name="wave6">
+	        <loop count="12" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+  	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+   	                    var tasklist = TaskList:readScript("script/enemy/s1e3.xml");
+   	                    tasklist.setBinding("target",enemy);
+   	                    tasklist.setBinding("x",240+(i*217)%176);
+   	                    tasklist.get("create").act();
+   	                    game.getObjList().add(enemy);
+  	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="120"/>
+	        
+	        <cmd>
+	        	var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e5.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240+96);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        
+	        <loop count="6" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+  	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+  	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+  	                    tasklist.setBinding("target",enemy);
+  	                    tasklist.setBinding("x",240-(64+(60*i)%96));
+  	                    tasklist.setBinding("y",612+(i*8)%64);
+  	                    tasklist.get("create").act();
+  	                    game.getObjList().add(enemy);
+  	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="180"/>
+	        <cmd>
+	        	var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e5.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240-96);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        
+	        <loop count="6" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+  	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+  	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+  	                    tasklist.setBinding("target",enemy);
+  	                    tasklist.setBinding("x",240+(64+(60*i)%96));
+  	                    tasklist.setBinding("y",612+(i*8)%64);
+  	                    tasklist.get("create").act();
+  	                    game.getObjList().add(enemy);
+  	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="180"/>
+	        
+	        <cmd>
+	        	var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e5.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240+96);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        
+	        <loop count="6" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+  	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+  	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+  	                    tasklist.setBinding("target",enemy);
+  	                    tasklist.setBinding("x",240-(64+(60*i)%96));
+  	                    tasklist.setBinding("y",612+(i*8)%64);
+  	                    tasklist.get("create").act();
+  	                    game.getObjList().add(enemy);
+  	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="500"/>
+	        
+	    </seq>
+	    
+	    <seq name="mid boss">
+	        <seq>
+		        <loop count="250" var="i" init="1" update="i=i+1">
+	                <seq>
+	                    <cmd>
+	                            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+		   	                    var tasklist = TaskList:readScript("script/enemy/s1e3.xml");
+		   	                    tasklist.setBinding("target",enemy);
+		   	                    tasklist.setBinding("x",240+(i*217)%352-176);
+		   	                    tasklist.get("create").act();
+		   	                    game.getObjList().add(enemy);
+                        </cmd>
+	                    <wait count="6"/>
+	                </seq>
+	            </loop>
+	            
+	            <loop count="100" var="i" init="1" update="i=i+1">
+	                <seq>
+	                     <if cond="i%3 eq 0">
+		                        <cmd>
+		                            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+			   	                    var tasklist = TaskList:readScript("script/enemy/s1e6.xml");
+			   	                    tasklist.setBinding("target",enemy);
+			   	                    tasklist.setBinding("x",240+(i/3*217)%352-176);
+			   	                    tasklist.get("create").act();
+			   	                    game.getObjList().add(enemy);
+		                        </cmd>
+		                        <cmd>
+		                            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+			   	                    var tasklist = TaskList:readScript("script/enemy/s1e3.xml");
+			   	                    tasklist.setBinding("target",enemy);
+			   	                    tasklist.setBinding("x",240+(i*217)%352-176);
+			   	                    tasklist.get("create").act();
+			   	                    game.getObjList().add(enemy);
+		                        </cmd>
+                        </if>
+	                    <wait count="6"/>
+	                </seq>
+	            </loop>
+	            <wait count="180"/>
+            </seq>
+	    </seq>
+	    
+	    <seq name="wave7">
+	        <cmd>
+	            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e7.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240+256);
+                tasklist.setBinding("y",544);
+                tasklist.setBinding("rotate",0.3);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        <wait count="180"/>
+	        
+	        <cmd>
+	            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e7.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240-256);
+                tasklist.setBinding("y",400);
+                tasklist.setBinding("rotate",-0.3);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        <wait count="400"/>
+	    </seq>
+	    
+	    <seq name="wave8">
+	        <cmd>
+	            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e8.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240-256);
+                tasklist.setBinding("y",460);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        <wait count="150"/>
+	        <cmd>
+	            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e8.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240+256);
+                tasklist.setBinding("y",444);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        
+	        <loop count="4" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+		                var tasklist = TaskList:readScript("script/enemy/s1e9.xml");
+		                tasklist.setBinding("target",enemy);
+		                tasklist.setBinding("x",240+(60*i)%96-48);
+		                tasklist.setBinding("y",400 + 96+(i*8)%64);
+		                tasklist.get("create").act();
+		                game.getObjList().add(enemy);
+	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="150"/>
+	        
+	        <cmd>
+	            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+                var tasklist = TaskList:readScript("script/enemy/s1e8.xml");
+                tasklist.setBinding("target",enemy);
+                tasklist.setBinding("x",240-256);
+                tasklist.setBinding("y",428);
+                tasklist.get("create").act();
+                game.getObjList().add(enemy);
+	        </cmd>
+	        
+	        <loop count="4" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+		                var tasklist = TaskList:readScript("script/enemy/s1e2.xml");
+		                tasklist.setBinding("target",enemy);
+		                tasklist.setBinding("x",240+(60*i)%96+48);
+		                tasklist.setBinding("y",400 + 160+(i*8)%64);
+		                tasklist.get("create").act();
+		                game.getObjList().add(enemy);
+	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="60"/>
+	        
+	        <loop count="4" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+		                var tasklist = TaskList:readScript("script/enemy/s1e9.xml");
+		                tasklist.setBinding("target",enemy);
+		                tasklist.setBinding("x",240-(60*i)%96-48);
+		                tasklist.setBinding("y",400 + 96+(i*8)%64);
+		                tasklist.get("create").act();
+		                game.getObjList().add(enemy);
+	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="60"/>
+	        
+	        <loop count="24" var="i" init="1" update="i=i+1">
+	            <seq>
+	                <cmd>
+	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+		                var tasklist = TaskList:readScript("script/enemy/s1e3.xml");
+		                tasklist.setBinding("target",enemy);
+		                tasklist.setBinding("x",240-((i*217)%176));
+		                tasklist.get("create").act();
+		                game.getObjList().add(enemy);
+	                </cmd>
+	                <wait count="6"/>
+	            </seq>
+	        </loop>
+	        <wait count="60"/>
+	    </seq>
+	    
+	    
+	    
+	     
+	     <seq name="wave9">
+	         <loop count="8" var="i" init="1" update="i=i+1">
+	             <seq>
+	                 <cmd>
+						var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+						var tasklist = TaskList:readScript("script/enemy/s1e10.xml");
+						tasklist.setBinding("target",enemy);
+						tasklist.setBinding("x",240+i*8-128);
+						tasklist.setBinding("dir",1);
+						tasklist.get("create").act();
+						game.getObjList().add(enemy);
+	                 </cmd>
+	                 <wait count="15"/>
+	             </seq>
+	         </loop>
+	         <wait count="30"/>
+	         
+	         <loop count="8" var="i" init="1" update="i=i+1">
+	             <seq>
+	                 <cmd>
+						var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+						var tasklist = TaskList:readScript("script/enemy/s1e10.xml");
+						tasklist.setBinding("target",enemy);
+						tasklist.setBinding("x",240-i*8+128);
+						tasklist.setBinding("dir",-1);
+						tasklist.get("create").act();
+						game.getObjList().add(enemy);
+	                 </cmd>
+	                 <wait count="15"/>
+	             </seq>
+	         </loop>
+	         <wait count="60"/>
+	         
+	         <cmd>
+				var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+				var tasklist = TaskList:readScript("script/enemy/s1e11.xml");
+				tasklist.setBinding("target",enemy);
+				tasklist.setBinding("x",0);
+				tasklist.get("create").act();
+				game.getObjList().add(enemy);
+             </cmd>
+             <wait count="450"/>
+	     </seq>
+	     
+	      
+	      
+	      <seq name="wave10">
+	          <loop count="7" var="x" init="162" update="x=x-54">
+	              <seq>
+		              <cmd>
+		                  	var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+							var tasklist = TaskList:readScript("script/enemy/s1e12.xml");
+							tasklist.setBinding("target",enemy);
+							tasklist.setBinding("x",x);
+							tasklist.get("create").act();
+							game.getObjList().add(enemy);
+		              </cmd>
+		              <wait count="24"/>
+	              </seq>
+	          </loop>
+	          
+	          <loop count="6" var="i" init="1" update="i=i+1;">
+	   	            <seq>
+	   	                <cmd>
+	   	                    var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+	   	                    var tasklist = TaskList:readScript("script/enemy/s1e1.xml");
+	   	                    tasklist.setBinding("target",enemy);
+	   	                    tasklist.setBinding("x",240+(60*i)%96-48);
+	   	                    tasklist.setBinding("y",612+(i*8)%64);
+	   	                    tasklist.get("create").act();
+	   	                    game.getObjList().add(enemy);
+	   	                </cmd>
+	   	                <wait count="6"/>
+	   	            </seq>
+   	          </loop>
+   	          <wait count="60"/>
+	          
+   	          <loop count="7" var="x" init="-162" update="x=x+54">
+	              <seq>
+		              <cmd>
+		                  	var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+							var tasklist = TaskList:readScript("script/enemy/s1e12.xml");
+							tasklist.setBinding("target",enemy);
+							tasklist.setBinding("x",x);
+							tasklist.get("create").act();
+							game.getObjList().add(enemy);
+		              </cmd>
+		              <wait count="24"/>
+	              </seq>
+	          </loop>
+	          <wait count="90"/>
+	      </seq>
+	      
+	      
+	      <seq name="wave11">
+	          <loop count="8" var="i" init="1" update="i=i+1">
+	              <seq>
+		              <cmd>
+		                  	var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+							var tasklist = TaskList:readScript("script/enemy/s1e10.xml");
+							tasklist.setBinding("target",enemy);
+							tasklist.setBinding("x",240-i*8+128);
+							tasklist.setBinding("dir",-1);
+							tasklist.get("create").act();
+							game.getObjList().add(enemy);
+		              </cmd>
+		              <wait count="15"/>
+	              </seq>
+	          </loop>
+	          <wait count="30"/>
+	          
+	          <loop count="8" var="i" init="1" update="i=i+1">
+	              <seq>
+		              <cmd>
+		                  	var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+							var tasklist = TaskList:readScript("script/enemy/s1e10.xml");
+							tasklist.setBinding("target",enemy);
+							tasklist.setBinding("x",240+i*8-128);
+							tasklist.setBinding("dir",1);
+							tasklist.get("create").act();
+							game.getObjList().add(enemy);
+		              </cmd>
+		              <wait count="15"/>
+	              </seq>
+	          </loop>
+	          <wait count="60"/>
+	          
+   	          <cmd>
+                  	var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+					var tasklist = TaskList:readScript("script/enemy/s1e11.xml");
+					tasklist.setBinding("target",enemy);
+					tasklist.setBinding("x",480);
+					tasklist.get("create").act();
+					game.getObjList().add(enemy);
+              </cmd>
+		              
+	          <wait count="540"/>
+	      </seq>
+	       -->
+	     
+	      <seq name="fin boss">
+	          <cmd>
+	                audio.PlayMusic('spellcard',0.1);
+			        var boss = new('org.tjuscs.bulletgame.model.Boss');
+			        context.setParent('boss',boss);
+		            var tasklist = TaskList:readScript("script/boss/sakuya.xml");
+		            tasklist.setBinding("target",boss);
+		            tasklist.get("create").act();
+		            game.getObjList().add(boss);
+	          </cmd>
+	      </seq>
+</seq>

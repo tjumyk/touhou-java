@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry exported="true" kind="lib" path="libs/gdx.jar" sourcepath="libs/gdx-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/commons-jexl-2.1.1.jar" sourcepath="libs/commons-jexl-2.1.1-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="libs/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/commons-jexl-2.1.1.jar"/>
+	<classpathentry kind="lib" path="libs/commons-jexl-2.1.1-javadoc.jar"/>
+	<classpathentry kind="lib" path="libs/commons-jexl-2.1.1-sources.jar"/>
+	<classpathentry kind="lib" path="libs/commons-jexl-2.1.1-tests.jar"/>
+	<classpathentry kind="lib" path="libs/commons-logging-1.2.jar"/>
 	<classpathentry kind="lib" path="libs/dom4j-1.6.1.jar"/>
-	<classpathentry kind="lib" path="libs/jaxen-1.1.4.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -1,0 +1,21 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+        	target.setTask(tasklist.get('task'));
+        </cmd>
+    </task>
+    <task name="task">
+        <loop count="-1">
+            <seq>
+		        <cmd>
+			        if(target.getVy() gt minvy){
+			        	target.setVy(target.getVy()+g);
+			        }else{
+			        	target.setBound(true);
+			        }
+		        </cmd>
+		        <wait count="1"/>
+	        </seq>
+        </loop>
+    </task>
+</tasklist>

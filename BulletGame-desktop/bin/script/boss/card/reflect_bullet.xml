@@ -1,0 +1,26 @@
+<tasklist>
+	<task name="create">
+   	    <cmd>
+   	        target.setTask(tasklist.get("task"));
+        </cmd>
+    </task>
+    
+    <task name="task">
+        <seq>
+	        <loop count="-1">
+	            <seq>
+	                <cmd>
+	                    if(target.getX() le 10){
+	                    	target.setVx(Math:abs(target.getVx()))
+	                    }else if(target.getX() ge 470){
+	                    	target.setVx(-Math:abs(target.getVx()))
+	                    }
+	                    if(target.getVy() gt -1)
+	                    	target.setVy(target.getVy()- 1);
+	                </cmd>
+	                <wait count="1"/>
+	            </seq>
+	        </loop>
+        </seq>
+    </task>
+</tasklist>

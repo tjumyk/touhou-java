@@ -1,0 +1,76 @@
+<!-- Param: x -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(8,108,false,true);
+	        target.setDrop([10,10,10]);
+	        target.setX(x);
+	        target.setY(756);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+		<para>
+		    <seq>
+		        <cmd>
+		            var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+	                var tasklist = TaskList:readScript("script/enemy/s1e5b.xml");
+	                tasklist.setBinding("target",enemy);
+	                enemy.setMaster(target);
+	                target.getServants().add(enemy);
+	                tasklist.setBinding("x",64);
+	                tasklist.get("create").act();
+	                game.getObjList().add(enemy);
+	                
+	                var enemy = new('org.tjuscs.bulletgame.model.Enemy');
+	                var tasklist = TaskList:readScript("script/enemy/s1e5b.xml");
+	                tasklist.setBinding("target",enemy);
+	                enemy.setMaster(target);
+	                target.getServants().add(enemy);
+	                tasklist.setBinding("x",-64);
+	                tasklist.get("create").act();
+	                game.getObjList().add(enemy);
+		        </cmd>
+		        <move x="x" y="-256" frames="720" mode="normal" target="target"/>
+		        <cmd>
+		            gameUtil.Del(target);
+	            </cmd>
+		    </seq>
+		    
+		    <seq>
+		        <wait count="30"/>
+		        <loop count="-1" >
+		            <seq>
+		                <var name="angle" value="0"/>
+		                <cmd>angle=gameUtil.Angle(target,game.getPlayer());</cmd>
+		                <loop count="7" var="n" init="3" update="n=n+1">
+		                    <seq>
+		                        <cmd>
+		                            audio.PlaySound('tan00',0.1);
+		                        </cmd>
+		                        <loop count="n" var="i" init="0" update="i=i+1">
+		                            <seq>
+		                                <var name="delta" value="n*15/(n-1)"/>
+			                            <cmd>
+			                                var bullet = game.getBulletPool().obtain();
+							       			bullet.init(
+									        	'ball_big',
+									        	gameUtil.COLOR_BLUE,
+									        	target.getX(),target.getY(),
+									        	5,angle+(i-n/2.0)*delta,
+									        	false,0,true,true);
+											game.getObjList().add(bullet);
+			                            </cmd>
+		                            </seq>
+		                        </loop>
+		                        <wait count="6"/>
+		                    </seq>
+		                </loop>
+		                <wait count="60"/>
+		            </seq>
+		        </loop>
+		    </seq>
+		</para>
+	</task>
+</tasklist>
+    

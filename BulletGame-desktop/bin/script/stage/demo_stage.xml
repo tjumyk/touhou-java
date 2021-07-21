@@ -1,0 +1,157 @@
+<loop count="-1">
+	<seq>
+	    <wait count="60" />
+	    <cmd>
+	        var bullet = game.getBulletPool().obtain();
+	        bullet.init(
+	        	'arrow_big',
+	        	gameUtil.COLOR_RED,
+	        	100,100,
+	        	3,0,
+	        	false,0,true,true);
+			game.getObjList().add(bullet);
+	    </cmd>
+	    <wait count="60" />
+	    <loop count="10" var="a" init="0" update="a=a+36;">
+	    	<cmd>
+	    	    var bullet = game.getBulletPool().obtain();
+	        	bullet.init(
+		        	'arrow_big',
+		        	gameUtil.COLOR_RED,
+		        	100,100,
+		        	3,a,
+		        	false,0,true,true);
+				game.getObjList().add(bullet);
+	    	</cmd>    
+	    </loop>
+	    <wait count="60" />
+	    <loop count="20" var="a1" init="0" update="a1=a1+13">
+	        <seq>
+	            <cmd>
+	                audio.PlaySound('tan00',0.1);
+	            </cmd>
+	            <loop count="36" var="a2" init="0" update="a2=a2+10">
+	                <cmd>
+			    	    var bullet = game.getBulletPool().obtain();
+	        			bullet.init(
+				        	'arrow_big',
+				        	gameUtil.COLOR_RED,
+				        	100,100,
+				        	3,a1+a2,
+				        	false,0,true,true);
+						game.getObjList().add(bullet);
+			    	</cmd>    
+	            </loop>
+	        	<wait count="15" />
+	        </seq>
+	    </loop>
+	    <wait count="60"/>
+	    <loop count="15">
+	        <seq>
+		        <cmd>
+		            audio.PlaySound('tan00',0.1);
+		        </cmd>
+		        <loop count="3" var="a" init="-30" update="a=a+30">
+		            <cmd>
+			            var bullet = game.getBulletPool().obtain();
+	        			bullet.init(
+				        	'arrow_big',
+				        	gameUtil.COLOR_RED,
+				        	200,200,
+				        	3,a,
+				        	true,0,true,true);
+						game.getObjList().add(bullet);
+					</cmd>
+		        </loop>
+		        <wait count="6"/>
+	        </seq>
+	    </loop>
+	    <wait count="60"/>
+	    <loop count="15">
+	        <seq>
+		        <cmd>
+		            audio.PlaySound('tan00',0.1);
+		        </cmd>
+		        <loop count="4" var="a" init="-45" update="a=a+30">
+		            <cmd>
+			            var bullet = game.getBulletPool().obtain();
+	        			bullet.init(
+				        	'arrow_big',
+				        	gameUtil.COLOR_RED,
+				        	200,200,
+				        	3,a,
+				        	true,0,true,true);
+						game.getObjList().add(bullet);
+					</cmd>
+		        </loop>
+		        <wait count="6"/>
+	        </seq>
+	    </loop>
+	    <wait count="60"/>
+	    <loop count="360">
+	        <seq>
+	            <cmd>
+		            var bullet = game.getBulletPool().obtain();
+	        		bullet.init(
+			        	'arrow_big',
+			        	gameUtil.COLOR_RED,
+			        	200,200,
+			        	3,ran:Float(0,360),
+			        	false,0,true,true);
+					game.getObjList().add(bullet);
+					audio.PlaySound('tan00',0.1);
+				</cmd>
+	            <wait count="1"/>
+	        </seq>
+	    </loop>
+	    <wait count="60"/>
+	    <loop count="21" var="x" init="-120" update="x=x+12">
+	        <seq>
+	            <cmd>
+	                audio.PlaySound('tan00',0.1);
+	            </cmd>
+	            <loop count="3" var="v" init="3.0" update="v=v+1.5">
+	                <loop count="3" var="angle" init="-30" update="angle=angle+30">
+	                    <cmd>
+				            var bullet = game.getBulletPool().obtain();
+	        				bullet.init(
+					        	'arrow_big',
+					        	gameUtil.COLOR_BLUE,
+					        	x,200,
+					        	v,angle,
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+							audio.PlaySound('tan00',0.1);
+						</cmd>
+	                </loop>
+	            </loop>
+	            <wait count="1"/>
+	        </seq>
+	    </loop>
+	    <wait count="30"/>
+	    <loop count="21" var="x" init="120" update="x=x-12">
+	        <seq>
+	            <cmd>
+	                audio.PlaySound('tan00',0.1);
+	            </cmd>
+	            <loop count="3" var="v" init="3.0" update="v=v+1.5">
+	                <loop count="2" var="angle" init="-15" update="angle=angle+30">
+	                    <cmd>
+				            var bullet = game.getBulletPool().obtain();
+	        				bullet.init(
+					        	'arrow_big',
+					        	gameUtil.COLOR_RED,
+					        	x,200,
+					        	v,angle,
+					        	true,0,true,true);
+							game.getObjList().add(bullet);
+							audio.PlaySound('tan00',0.1);
+						</cmd>
+	                </loop>
+	            </loop>
+	            <wait count="1"/>
+	        </seq>
+	    </loop>
+	    <wait count="120"/>
+	</seq>
+</loop>

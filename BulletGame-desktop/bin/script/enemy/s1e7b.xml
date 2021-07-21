@@ -1,0 +1,25 @@
+<!-- Param: i,rotate,l -->
+<tasklist>
+    <task name="create">
+        <cmd>
+	        target.init(25,999999,false,true);
+	        target.setDrop([0,0,1]);
+	        target.setX(240);
+	        target.setY(400);
+	        target.setTask(tasklist.get("task"));
+	    </cmd>
+	</task>
+	<task name="task">
+	   <loop count="-1">
+	       <seq>
+		       <cmd>
+		           var angle= i*45+target.getTimer()*rotate;
+		           target.setX(target.getMaster().getX()+l*MathUtils:cosDeg(angle));
+		           target.setY(target.getMaster().getY()+l*MathUtils:sinDeg(angle));
+		       </cmd>
+		       <wait count="1"/>
+	       </seq>
+	   </loop>
+	</task>
+</tasklist>
+    

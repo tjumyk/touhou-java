@@ -1,0 +1,37 @@
+<!-- Param: i,rotate,l -->
+<tasklist>
+    <task name="create">
+        <cmd>
+            target.init(
+	        	gameUtil.COLOR_RED,
+	        	master.getX(),master.getY(),
+	        	0,32,16,32,6,0);
+        	target.turnOn(30,false);
+        	target.setBound(false);
+        	target.setTask(tasklist.get("task"));
+        </cmd>
+    </task>
+    <task name="task">
+        <para>
+        	<loop count="-1">
+        	    <seq>
+        	        <cmd>
+        	            target.setRot(i*45+target.getTimer()*rotate);
+        	            target.setX(master.getX()+l*MathUtils:cosDeg(target.getRot()));
+		           		target.setY(master.getY()+l*MathUtils:sinDeg(target.getRot()));
+        	        </cmd>
+        	        <wait count="1"/>
+        	    </seq>
+        	</loop>
+        	
+        	<loop count="-1">
+        	    <seq>
+        	        <cmd>
+        	            target.setL2(target.getL2()+2);
+        	        </cmd>
+        	        <wait count="1"/>
+        	    </seq>
+        	</loop>
+        </para>
+    </task>
+</tasklist>

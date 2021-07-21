@@ -1,0 +1,52 @@
+<tasklist>
+    <task name="create">
+        <cmd>
+	        card.init(
+	       		'灵梦测试符卡',
+	           	2*60,15*60,30*60,
+	           	400,
+	           	10,10,10);
+	        card.setTask(tasklist.get('task'));
+        </cmd>
+    </task>
+    <task name="task">
+        <seq>
+            <move x="240" y="600" frames="60" mode="normal" target="boss"/>
+	        <para>
+				<loop count="-1">
+				    <seq>
+				        <loop count="5" var="angle" init="-70" update="angle=angle+35">
+				            <cmd>
+				                var bullet = game.getBulletPool().obtain();
+				       			bullet.init(
+						        	'square',
+						        	gameUtil.COLOR_RED,
+						        	boss.getX(),boss.getY(),
+						        	2.67,gameUtil.Angle(boss,game.getPlayer())+angle,
+						        	false,0,true,true);
+						        var tasklist = TaskList:readScript("script/boss/card/reflect_bullet.xml");
+				        		tasklist.setBinding('target',bullet);
+				        		tasklist.get('create').act();
+								game.getObjList().add(bullet);
+				            </cmd>
+				        </loop>
+				        <wait count="8"/>
+				    </seq>
+				</loop>
+				<seq>
+				    <wait count="180"/>
+				    <loop count="-1">
+				        <seq>
+				            <cmd>
+				                //boss wander 30 frames
+				            </cmd>
+				            <wait count="180"/>
+				        </seq>
+				    </loop>
+				</seq>
+			</para>
+			
+	        <move x="480" y="800" frames="120" mode="normal" target="boss"/>
+		</seq>		        
+    </task>
+</tasklist>

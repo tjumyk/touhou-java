@@ -265,6 +265,12 @@ public class HomeScreen implements Screen {
 		public boolean fling(float velocityX, float velocityY, int button) {
 			return false;
 		}
+
+		@Override
+		public boolean panStop(float x, float y, int pointer, int button) {
+			// TODO 自动生成的方法存根
+			return false;
+		}
 	}
 	
 }
